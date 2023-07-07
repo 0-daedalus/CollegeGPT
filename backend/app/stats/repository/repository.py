@@ -1,0 +1,107 @@
+from datetime import datetime
+from typing import Optional
+
+from bson.objectid import ObjectId
+from pymongo.database import Database
+
+
+class StatsRepository:
+    def __init__(self, database: Database):
+        self.database = database
+
+    def get_user_by_id(self, user_id: str) -> Optional[dict]:
+        user = self.database["users"].find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+        return user
+
+    def set_stats(self, user_id: str, stats: dict):
+        if self.get_user_by_id(user_id) is None:
+            print("User not found")
+            return
+        if stats["country"]:
+            self.set_country(user_id, stats["country"])
+        if stats["majors"]:
+            self.set_majors(user_id, stats["majors"])
+        if stats["sat_score"]:
+            self.set_sat(user_id, stats["sat_score"])
+        if stats["ielts_score"]:
+            self.set_ielts(user_id, stats["ielts_score"])
+        if stats["GPA_scale"]:
+            self.set_gpa_scale(user_id, stats["GPA_scale"])
+        if stats["CGPA"]:
+            self.set_cgpa(user_id, stats["CGPA"])
+        if stats["fin_aid"]:
+            self.set_fin_aid(user_id, stats["fin_aid"])
+        if stats["school"]:
+            self.set_school(user_id, stats["school"])
+        if stats["interests"]:
+            self.set_interests(user_id, stats["interests"])
+        if stats["olympiads"]:
+            self.set_olympiads(user_id, stats["olympiads"])
+        if stats["projects"]:
+            self.set_projects(user_id, stats["projects"])
+        if stats["volunteering"]:
+            self.set_volunteering(user_id, stats["volunteering"])
+
+    def set_country(self, user_id: str, country: str):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"country": country}}
+        )
+
+    def set_majors(self, user_id: str, majors: list):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"majors": majors}}
+        )
+
+    def set_sat(self, user_id: str, sat_score: int):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"sat_score": sat_score}}
+        )
+
+    def set_ielts(self, user_id: str, ielts_score: float):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"ielts_score": ielts_score}}
+        )
+
+    def set_gpa_scale(self, user_id: str, gpa_scale: float):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"GPA_scale": gpa_scale}}
+        )
+
+    def set_cgpa(self, user_id: str, cgpa: float):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"CGPA": cgpa}}
+        )
+
+    def set_fin_aid(self, user_id: str, fin_aid: bool):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"fin_aid": fin_aid}}
+        )
+
+    def set_school(self, user_id: str, school: str):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"school": school}}
+        )
+
+    def set_interests(self, user_id: str, interests: list):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"interests": interests}}
+        )
+
+    def set_olympiads(self, user_id: str, olympiads: list):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"olympiads": olympiads}}
+        )
+
+    def set_projects(self, user_id: str, projects: list):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"projects": projects}}
+        )
+
+    def set_volunteering(self, user_id: str, volunteering: str):
+        self.database["stats"].update_one(
+            {"_id": ObjectId(user_id)}, {"$set": {"volunteering": volunteering}}
+        )

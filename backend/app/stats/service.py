@@ -1,7 +1,7 @@
 from app.config import database
 from pydantic import BaseSettings
 from .adapters.jwt_service import JwtService
-from .repository.repository import AuthRepository
+from .repository.repository import StatsRepository
 
 
 class AuthConfig(BaseSettings):
@@ -14,13 +14,13 @@ config = AuthConfig()
 
 
 class Service:
-    def __init__(self, repository: AuthRepository, jwt_svc: JwtService):
+    def __init__(self, repository: StatsRepository, jwt_svc: JwtService):
         self.repository = repository
         self.jwt_svc = jwt_svc
 
 
 def get_service():
-    repository = AuthRepository(database)
+    repository = StatsRepository(database)
     jwt_svc = JwtService(config.JWT_ALG, config.JWT_SECRET, config.JWT_EXP)
     svc = Service(repository, jwt_svc)
     return svc

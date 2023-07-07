@@ -28,7 +28,7 @@ def register_user(
             detail="Email is already taken.",
         )
 
-    res = svc.repository.create_user(input.dict())
-    svc.repository.init_stats(res)
+    user_id = svc.repository.create_user(input.dict())
+    svc.repository.init_stats(user_id)
 
     return RegisterUserResponse(email=input.email)

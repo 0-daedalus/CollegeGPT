@@ -18,7 +18,26 @@ class AuthRepository:
             "created_at": datetime.utcnow(),
         }
 
-        self.database["users"].insert_one(payload)
+        res = self.database["users"].insert_one(payload)
+        return res.inserted_id
+
+    def init_stats(self, user_id: str):
+        payload = {
+            "_id": user_id,
+            "country": None,
+            "majors": None,
+            "sat_score": None,
+            "ielts_score": None,
+            "GPA_scale": None,
+            "CGPA": None,
+            "fin_aid": None,
+            "school": None,
+            "interests": None,
+            "olympiads": None,
+            "projects": None,
+            "volunteering": None,
+        }
+        self.database["stats"].insert_one(payload)
 
     def get_user_by_id(self, user_id: str) -> Optional[dict]:
         user = self.database["users"].find_one(
