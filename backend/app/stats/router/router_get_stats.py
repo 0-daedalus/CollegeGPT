@@ -7,7 +7,7 @@ from ..adapters.jwt_service import JWTData
 from .dependencies import parse_jwt_user_data
 
 
-class SetStatsRequest(AppModel):
+class GetStatsResponse(AppModel):
     country: Optional[str]
     majors: Optional[str]
     sat_score: Optional[int]
@@ -22,11 +22,11 @@ class SetStatsRequest(AppModel):
     volunteering: Optional[str]
 
 
-@router.patch("/{user_id}", status_code=status.HTTP_200_OK)
-def set_stats(
-    input: SetStatsRequest,
+@router.get(
+    "/{user_id}", status_code=status.HTTP_200_OK, response_model=GetStatsResponse
+)
+def get_stats(
     svc: Service = Depends(get_service),
     jwt_data: JWTData = Depends(parse_jwt_user_data),
 ):
-    svc.repository.set_stats(jwt_data.user_id, input.dict())
-    return {"message": "Stats set successfully."}
+    return svc.repository.get_stats(jwt_data.user_id)

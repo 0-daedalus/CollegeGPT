@@ -1,7 +1,10 @@
 from app.config import database
 from pydantic import BaseSettings
+
+
 from .adapters.jwt_service import JwtService
 from .repository.repository import StatsRepository
+from .adapters.ai_service import AIService
 
 
 class AuthConfig(BaseSettings):
@@ -17,6 +20,7 @@ class Service:
     def __init__(self, repository: StatsRepository, jwt_svc: JwtService):
         self.repository = repository
         self.jwt_svc = jwt_svc
+        self.ai_svc = AIService()
 
 
 def get_service():

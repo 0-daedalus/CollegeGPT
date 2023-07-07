@@ -21,6 +21,24 @@ class StatsRepository:
         if self.get_user_by_id(user_id) is None:
             print("User not found")
             return
+        if self.get_stats(user_id) is None:
+            self.database["stats"].insert_one(
+                {
+                    "_id": ObjectId(user_id),
+                    "country": stats["country"],
+                    "majors": stats["majors"],
+                    "sat_score": stats["sat_score"],
+                    "ielts_score": stats["ielts_score"],
+                    "GPA_scale": stats["GPA_scale"],
+                    "CGPA": stats["CGPA"],
+                    "fin_aid": stats["fin_aid"],
+                    "school": stats["school"],
+                    "interests": stats["interests"],
+                    "olympiads": stats["olympiads"],
+                    "projects": stats["projects"],
+                    "volunteering": stats["volunteering"],
+                }
+            )
         if stats["country"]:
             self.set_country(user_id, stats["country"])
         if stats["majors"]:
@@ -105,3 +123,11 @@ class StatsRepository:
         self.database["stats"].update_one(
             {"_id": ObjectId(user_id)}, {"$set": {"volunteering": volunteering}}
         )
+
+    def get_stats(self, user_id: str) -> Optional[dict]:
+        stats = self.database["stats"].find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+        return stats
