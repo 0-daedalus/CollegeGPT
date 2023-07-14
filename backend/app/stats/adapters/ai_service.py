@@ -14,17 +14,17 @@ class AIService:
         openai.api_key = OPENAI_API_KEY
 
     def generate_prompt(self, stats: dict):
-        fin_aid = (
-            "interested in financial aid"
-            if stats["fin_aid"]
-            else "not interested in financial aid"
-        )
+        # fin_aid = (
+        #     "interested in financial aid"
+        #     if stats["fin_aid"]
+        #     else "not interested in financial aid"
+        # )
         prompt = (
             "I am a student who wants to study in the US. I am from "
             + stats["country"]
             + ". I am interested in "
             + stats["majors"][0]
-            + "major"
+            + " major"
             + ". I have a GPA of"
             + str(stats["CGPA"])
             + " out of "
@@ -33,18 +33,18 @@ class AIService:
             + str(stats["sat_score"])
             + ". I have an IELTS score of "
             + str(stats["ielts_score"])
-            + ". I am "
-            + fin_aid
-            + ". I have studied at "
-            + stats["school"]
-            + ". My hobbies are: "
-            + stats["interests"]
-            + ". I have participated in "
-            + stats["olympiads"]
-            + ". I have worked on "
-            + stats["projects"]
-            + ". I have volunteered at "
-            + stats["volunteering"]
+            # + ". I am "
+            # + fin_aid
+            # + ". I have studied at "
+            # + stats["school"]
+            # + ". My hobbies are: "
+            # + stats["interests"]
+            # + ". I have participated in "
+            # + stats["olympiads"]
+            # + ". I have worked on "
+            # + stats["projects"]
+            # + ". I have volunteered at "
+            # + stats["volunteering"]
             + "."
             + "Please, provide a list of 5 reach, 5 target and 5 safety universities for me in the USA."
         )

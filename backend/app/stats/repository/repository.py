@@ -31,12 +31,12 @@ class StatsRepository:
                     "ielts_score": stats["ielts_score"],
                     "GPA_scale": stats["GPA_scale"],
                     "CGPA": stats["CGPA"],
-                    "fin_aid": stats["fin_aid"],
-                    "school": stats["school"],
-                    "interests": stats["interests"],
-                    "olympiads": stats["olympiads"],
-                    "projects": stats["projects"],
-                    "volunteering": stats["volunteering"],
+                    # "fin_aid": stats["fin_aid"],
+                    # "school": stats["school"],
+                    # "interests": stats["interests"],
+                    # "olympiads": stats["olympiads"],
+                    # "projects": stats["projects"],
+                    # "volunteering": stats["volunteering"],
                 }
             )
         if stats["country"]:
@@ -51,18 +51,18 @@ class StatsRepository:
             self.set_gpa_scale(user_id, stats["GPA_scale"])
         if stats["CGPA"]:
             self.set_cgpa(user_id, stats["CGPA"])
-        if stats["fin_aid"]:
-            self.set_fin_aid(user_id, stats["fin_aid"])
-        if stats["school"]:
-            self.set_school(user_id, stats["school"])
-        if stats["interests"]:
-            self.set_interests(user_id, stats["interests"])
-        if stats["olympiads"]:
-            self.set_olympiads(user_id, stats["olympiads"])
-        if stats["projects"]:
-            self.set_projects(user_id, stats["projects"])
-        if stats["volunteering"]:
-            self.set_volunteering(user_id, stats["volunteering"])
+        # if stats["fin_aid"]:
+        #     self.set_fin_aid(user_id, stats["fin_aid"])
+        # if stats["school"]:
+        #     self.set_school(user_id, stats["school"])
+        # if stats["interests"]:
+        #     self.set_interests(user_id, stats["interests"])
+        # if stats["olympiads"]:
+        #     self.set_olympiads(user_id, stats["olympiads"])
+        # if stats["projects"]:
+        #     self.set_projects(user_id, stats["projects"])
+        # if stats["volunteering"]:
+        #     self.set_volunteering(user_id, stats["volunteering"])
 
     def set_country(self, user_id: str, country: str):
         self.database["stats"].update_one(

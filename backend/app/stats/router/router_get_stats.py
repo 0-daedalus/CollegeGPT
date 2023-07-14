@@ -14,12 +14,12 @@ class GetStatsResponse(AppModel):
     ielts_score: Optional[float]
     GPA_scale: Optional[float]
     CGPA: Optional[float]
-    fin_aid: Optional[bool]
-    school: Optional[str]
-    interests: Optional[str]
-    olympiads: Optional[str]
-    projects: Optional[str]
-    volunteering: Optional[str]
+    # fin_aid: Optional[bool]
+    # school: Optional[str]
+    # interests: Optional[str]
+    # olympiads: Optional[str]
+    # projects: Optional[str]
+    # volunteering: Optional[str]
 
 
 @router.get(
