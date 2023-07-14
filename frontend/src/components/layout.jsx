@@ -2,6 +2,7 @@ import Head from 'next/head'
 import '../app/globals.css'
 import React from 'react'
 import Header from './header'
+import Footer from './footer'
 
 export default function Layout({children}){
   return (
@@ -17,9 +18,9 @@ export default function Layout({children}){
         
       </Header>
       <main className='flex-1'>{children}</main>
-      {/* <Footer>
+      <Footer>
         
-      </Footer> */}
+      </Footer>
     </div>
   )
 }

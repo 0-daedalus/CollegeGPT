@@ -4,11 +4,11 @@ import '../app/globals.css'
 
 export default function Header({hasAuth}){
     return (
-        <header className=" h-[10%] bg-blue-600 flex justify-between items-center">
+        <header className=" h-[10%] bg-gray-700 flex justify-between items-center">
                 <Image 
                 priority
                 src="/images/logo.png"
-                className=" rounded-full ml-5 h-full w-fit"
+                className=" rounded-full ml-5 h-4/5 w-fit"
                 height={100}
                 width={100}
                 alt="CollegeGPT logo"
