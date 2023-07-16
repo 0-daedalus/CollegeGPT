@@ -6,7 +6,7 @@ import Footer from './footer'
 
 export default function Layout({children}){
   return (
-    <div className="w-screen h-screen bg-blue-100 flex flex-col m-0">
+    <div className="w-screen h-screen bg-white flex flex-col m-0">
       <Head>
         <link rel="icon" href="./images/logo.png" />
         <meta
@@ -17,7 +17,7 @@ export default function Layout({children}){
       <Header >
         
       </Header>
-      <main className='flex-1'>{children}</main>
+      <main className='flex-1 flex justify-center items-center'>{children}</main>
       <Footer>
         
       </Footer>

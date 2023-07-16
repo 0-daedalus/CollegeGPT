@@ -8,7 +8,7 @@ export default function Header({hasAuth}){
                 <Image 
                 priority
                 src="/images/logo.png"
-                className=" rounded-full ml-5 h-4/5 w-fit"
+                className=" rounded-full ml-5 h-3/4 w-fit"
                 height={100}
                 width={100}
                 alt="CollegeGPT logo"
