@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import "../app/globals.css"
+import "@/app/globals.css"
 import Link from "next/link";
 
 export default function ProfileCard({ userData }) {
@@ -36,7 +36,7 @@ export default function ProfileCard({ userData }) {
                 </div>
                 <div className="buttons my-6">
                     <button className="bg-green-500 rounded-md text-white h-fit text-lg p-4 mr-8">Generate List</button>
-                    <button className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mr-8"><Link href="/stats">Edit stats</Link></button>
+                    <button className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mr-8"><Link href="/pages/stats">Edit stats</Link></button>
                 </div>
             </div>
         </>

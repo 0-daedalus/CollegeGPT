@@ -17,7 +17,7 @@ export default function Header({isLoggedIn}){
                 {isLoggedIn ? (
                     <ul className="flex w-1/2 justify-around text-white text-2xl"> 
                         <li><Link href="/">HOME</Link></li>
-                        <li><Link href="/profile">PROFILE</Link></li>
+                        <li><Link href="/pages/profile">PROFILE</Link></li>
                         <li>VIYTI</li>
                     </ul>
                 ) : (

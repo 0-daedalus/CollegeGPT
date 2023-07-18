@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Layout from '@/components/layout';
 import ProfileCard from '@/components/profileCard';
-import '../globals.css'
+import "@/app/globals.css"
 
 let userData = {
   email: "string",
