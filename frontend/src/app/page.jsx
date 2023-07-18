@@ -8,7 +8,7 @@ async function getPhotoUrl(){
     const API_KEY = process.env.GOOGLE_MAPS_KEY;
     let config = {
         method: 'get',
-        url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Harvard%20University&inputtype=textquery&fields=photos&key=AIzaSyBRBuvZXkLs0puCUgxiA1tJe8ZKvGynJS4`,
+        url: `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Harvard%20University&inputtype=textquery&fields=photos&key=${API_KEY}`,
         headers: { }
     }
     const res = await fetch(config.url).catch((err) => console.log(err));
@@ -24,7 +24,7 @@ async function getPhotoUrl(){
 
 export default async function Home({UniversityPhoto}){
     const url = await getPhotoUrl();
-    console.log(url.props.UniversityPhoto);
+    //console.log(url.props.UniversityPhoto);
     return (
         <Layout>
             <UniversityCard UniversityPhoto={url.props.UniversityPhoto}></UniversityCard>
