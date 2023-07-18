@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import '../app/globals.css'
 
-export default function Header({hasAuth}){
+export default function Header({isLoggedIn}){
     return (
         <header className=" h-[10%] bg-gray-700 flex justify-between items-center">
                 <Image 
@@ -13,10 +14,10 @@ export default function Header({hasAuth}){
                 width={100}
                 alt="CollegeGPT logo"
                 />
-                {hasAuth ? (
+                {isLoggedIn ? (
                     <ul className="flex w-1/2 justify-around text-white text-2xl"> 
-                        <li>HOME</li>
-                        <li>PROFILE</li>
+                        <li><Link href="/">HOME</Link></li>
+                        <li><Link href="/profile">PROFILE</Link></li>
                         <li>VIYTI</li>
                     </ul>
                 ) : (

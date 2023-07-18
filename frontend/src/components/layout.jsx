@@ -4,7 +4,7 @@ import React from 'react'
 import Header from './header'
 import Footer from './footer'
 
-export default function Layout({children}){
+export default function Layout({isLoggedIn, children}){
   return (
     <div className="w-screen h-screen bg-white flex flex-col m-0">
       <Head>
@@ -14,7 +14,7 @@ export default function Layout({children}){
           content="Use the power of AI to choose a college!"
         />
       </Head>
-      <Header >
+      <Header isLoggedIn={true}>
         
       </Header>
       <main className='flex-1 flex justify-center items-center'>{children}</main>
