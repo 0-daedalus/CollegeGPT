@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 from bson.objectid import ObjectId
 from pymongo.database import Database
@@ -131,3 +131,26 @@ class StatsRepository:
             }
         )
         return stats
+
+    def add_universities(self, user_id: str, uniList: list):
+        if self.get_user_by_id(user_id) is None:
+            print("User not found")
+            return
+        entry = self.database["universities"].insert_one(
+            {
+                "_id": ObjectId(user_id),
+                "universities": uniList,
+                "date": datetime.now(),
+            }
+        )
+        return entry
+
+    def get_universities(self, user_id: str) -> Optional[List[dict]]:
+        universities = self.database["universities"].find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+        if universities is None:
+            return None
+        return universities

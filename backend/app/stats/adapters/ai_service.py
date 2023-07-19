@@ -1,5 +1,6 @@
 import os
 import openai
+import json
 from dotenv import load_dotenv
 
 
@@ -23,7 +24,7 @@ class AIService:
             "I am a student who wants to study in the US. I am from "
             + stats["country"]
             + ". I am interested in "
-            + stats["majors"][0]
+            + stats["majors"]
             + " major"
             + ". I have a GPA of"
             + str(stats["CGPA"])
@@ -46,8 +47,10 @@ class AIService:
             # + ". I have volunteered at "
             # + stats["volunteering"]
             + "."
-            + "Please, provide a list of 5 reach, 5 target and 5 safety universities for me in the USA."
+            + "Please, provide a list of approximately 5 reach, 5 target and 5 safety universities "
+            + "for me in the USA. Provide any additional information in the 'description' field that you think is relevant"
         )
+        # print(prompt)
         return prompt
 
     def generate_response(self, prompt: str) -> list[str]:
@@ -56,13 +59,21 @@ class AIService:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful college assistant. Your job is to recommend universities in the USA based on applicant's stats. You try to provide all of the relevant information and justify your recommendations, as well as to inform applicants about any pitfalls."
-                    + " You should keep in mind that the applicant is an international student and try to base your recommendations on this fact.",
+                    "content": "You are a helpful college assistant. Your job is to provide an INTERNATIONAL applicant with a list of up to 5 reach,"
+                    + "5 target and 5 safety universities in the USA. WIth that in mind, give your recommendations.  Style your answer as a JSON array of "
+                    + "Objects with the following fields: 'name' which contains the name of the university, 'type' which contains the type of the university "
+                    + "(reach target or safety), 'description' which should include  the reason you recommend this university to an applicant,"
+                    + " and 'tips' which should include your tips on applying to this university. "
+                    + "You should keep in mind the following:  Understand, that in applicant's country, GPA of 4.00/5.00 is considered slightly above average. "
+                    + "An applicant is eligible to apply to Ivy league, Harvard, MIT etc. only if their GPA is close to 5.00 (above 4.90), "
+                    + "they have an exceptional SAT score and IELTS score of more than 7.0. If an applicant is weaker than an average applicant to"
+                    + " a Reach university, do not recommend it. Your answer should ONLY contain JSON.",
                 },
                 {"role": "user", "content": prompt},
             ],
             temperature=0.9,
         )
         reply = response.choices[0].message.content.strip()
-        chunks = split_string(reply, 4000)
-        return chunks
+        universityList = json.loads(reply)
+        print(universityList)
+        return universityList

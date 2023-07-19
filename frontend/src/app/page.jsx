@@ -22,12 +22,29 @@ async function getPhotoUrl(){
     };
 }
 
-export default async function Home({UniversityPhoto}){
-    const url = await getPhotoUrl();
+export default async function Home({Universities}){
+    //const url = await getPhotoUrl();
     //console.log(url.props.UniversityPhoto);
     return (
         <Layout>
-            <UniversityCard UniversityPhoto={url.props.UniversityPhoto}></UniversityCard>
+            <div className="uniList w-full h-full grid gap-16">
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+                <UniversityCard></UniversityCard>
+            </div>
+            {/* <UniversityCard UniversityPhoto={url.props.UniversityPhoto}></UniversityCard> */}
         </Layout>
     )
 }

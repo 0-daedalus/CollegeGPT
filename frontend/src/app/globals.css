@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.uniList{
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.card{
+  width: 100%;
+}
