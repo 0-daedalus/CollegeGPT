@@ -136,6 +136,8 @@ class StatsRepository:
         if self.get_user_by_id(user_id) is None:
             print("User not found")
             return
+        for uni in uniList:
+            uni["imageUrl"] = ""
         entry = self.database["universities"].insert_one(
             {
                 "_id": ObjectId(user_id),
@@ -154,3 +156,12 @@ class StatsRepository:
         if universities is None:
             return None
         return universities
+
+    def addImageToUni(self, user_id: str, Uniname: str, imageUrl: str):
+        if self.get_universities(user_id) is None:
+            print("User not found")
+            return
+        self.database["universities"].update_one(
+            {"_id": ObjectId(user_id), "universities.name": Uniname},
+            {"$set": {"universities.$.imageUrl": imageUrl}},
+        )

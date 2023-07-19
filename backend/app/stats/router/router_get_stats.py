@@ -29,4 +29,11 @@ def get_stats(
     svc: Service = Depends(get_service),
     jwt_data: JWTData = Depends(parse_jwt_user_data),
 ):
-    return svc.repository.get_stats(jwt_data.user_id)
+    entry = svc.repository.get_stats(jwt_data.user_id)
+    if entry is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No stats found for this user.",
+        )
+    else:
+        return entry

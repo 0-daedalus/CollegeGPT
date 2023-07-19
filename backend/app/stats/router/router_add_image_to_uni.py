@@ -7,15 +7,12 @@ from ..adapters.jwt_service import JWTData
 from .dependencies import parse_jwt_user_data
 
 
-@router.post("/universities", status_code=status.HTTP_200_OK)
-def create_uni_list(
+@router.patch("/universities", status_code=status.HTTP_200_OK)
+def add_image_to_uni_list(
+    name: str,
+    imageUrl: str,
     jwt_data: JWTData = Depends(parse_jwt_user_data),
     svc: Service = Depends(get_service),
 ):
-    stats = svc.repository.get_stats(jwt_data.user_id)
-    prompt = svc.ai_svc.generate_prompt(stats)
-    uni_list = svc.ai_svc.generate_response(prompt)
-    svc.repository.add_universities(jwt_data.user_id, uni_list)
-    # for chunk in uni_list:
-    #     print(chunk)
-    return uni_list
+    svc.repository.addImageToUni(jwt_data.user_id, name, imageUrl)
+    return {"message": "Image added successfully."}

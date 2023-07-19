@@ -75,5 +75,4 @@ class AIService:
         )
         reply = response.choices[0].message.content.strip()
         universityList = json.loads(reply)
-        print(universityList)
         return universityList
