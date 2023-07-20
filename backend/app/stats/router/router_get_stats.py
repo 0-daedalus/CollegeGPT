@@ -23,7 +23,7 @@ class GetStatsResponse(AppModel):
 
 
 @router.get(
-    "/{user_id}", status_code=status.HTTP_200_OK, response_model=GetStatsResponse
+    "/users", status_code=status.HTTP_200_OK, response_model=GetStatsResponse
 )
 def get_stats(
     svc: Service = Depends(get_service),

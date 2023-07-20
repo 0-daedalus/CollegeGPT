@@ -8,12 +8,10 @@ from .dependencies import parse_jwt_user_data
 
 
 class GetUniListResponse(AppModel):
-    uniList: List[dict]
+    uniList: List[str]
 
 
-@router.get(
-    "/universities", status_code=status.HTTP_200_OK, response_model=GetUniListResponse
-)
+@router.get("/universities", status_code=status.HTTP_200_OK)
 def get_uni_list(
     svc: Service = Depends(get_service),
     jwt_data: JWTData = Depends(parse_jwt_user_data),

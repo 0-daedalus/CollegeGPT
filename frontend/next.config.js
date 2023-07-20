@@ -7,6 +7,11 @@ module.exports = {
           hostname: 'maps.googleapis.com',
           port: '',
         },
+        {
+          protocol: 'https',
+          hostname: 'upload.wikimedia.org',
+          port: '',
+        },
       ],
     },
   }

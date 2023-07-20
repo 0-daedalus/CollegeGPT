@@ -140,22 +140,20 @@ class StatsRepository:
             uni["imageUrl"] = ""
         entry = self.database["universities"].insert_one(
             {
-                "_id": ObjectId(user_id),
+                "user_id": ObjectId(user_id),
                 "universities": uniList,
                 "date": datetime.now(),
             }
         )
         return entry
 
-    def get_universities(self, user_id: str) -> Optional[List[dict]]:
+    def get_universities(self, user_id: str) -> Optional[List[str]]:
         universities = self.database["universities"].find_one(
             {
                 "_id": ObjectId(user_id),
             }
         )
-        if universities is None:
-            return None
-        return universities
+        return universities["universities"]
 
     def addImageToUni(self, user_id: str, Uniname: str, imageUrl: str):
         if self.get_universities(user_id) is None:
