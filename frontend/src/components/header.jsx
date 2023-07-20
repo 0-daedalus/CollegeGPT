@@ -5,7 +5,7 @@ import '../app/globals.css'
 
 export default function Header({isLoggedIn}){
     return (
-        <header className=" h-[10%] bg-gray-700 flex justify-between items-center">
+        <header className=" h-24 bg-gray-700 flex justify-between items-center">
                 <Image 
                 priority
                 src="/images/logo.png"

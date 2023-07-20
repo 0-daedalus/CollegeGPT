@@ -6,7 +6,7 @@ import Footer from './footer'
 
 export default function Layout({isLoggedIn, children}){
   return (
-    <div className="w-screen h-screen bg-white flex flex-col m-0">
+    <div className="w-screen min-h-screen bg-white flex flex-col m-0">
       <Head>
         <link rel="icon" href="./images/logo.png" />
         <meta
@@ -17,7 +17,7 @@ export default function Layout({isLoggedIn, children}){
       <Header isLoggedIn={true}>
         
       </Header>
-      <main className='flex-1 flex justify-center items-center'>{children}</main>
+      <main className='flex-1 flex justify-center items-center bg-white'>{children}</main>
       <Footer>
         
       </Footer>

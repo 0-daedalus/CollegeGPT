@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Layout from "@/components/layout";
-import UniversityCard from "@/components/universityCard";
+import CardWrapper from "@/components/cardWrapper";
 import "@/app/globals.css"
 import axios from "axios";
 
@@ -18,9 +18,9 @@ export default async function Home(){
     //console.log(url.props.UniversityPhoto);
     return (
         <Layout>
-            <div className="uniList w-full h-full grid gap-16">
+            <div className="uniList w-full h-full grid gap-16 p-12">
                 {universities.data.map((university) => (
-                    <UniversityCard  University={university}></UniversityCard>
+                    <CardWrapper  university={university} />
                 ))}
             </div>  
             {/* <UniversityCard UniversityPhoto={url.props.UniversityPhoto}></UniversityCard> */}

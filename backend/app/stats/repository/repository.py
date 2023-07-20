@@ -138,12 +138,14 @@ class StatsRepository:
             return
         for uni in uniList:
             uni["imageUrl"] = ""
-        entry = self.database["universities"].insert_one(
+        entry = self.database["universities"].update_one(
+            {"_id": ObjectId(user_id)},
             {
-                "user_id": ObjectId(user_id),
-                "universities": uniList,
-                "date": datetime.now(),
-            }
+                "$set": {
+                    "universities": uniList,
+                }
+            },
+            upsert=True,
         )
         return entry
 

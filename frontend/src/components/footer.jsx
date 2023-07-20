@@ -4,7 +4,7 @@ import '../app/globals.css'
 
 export default function Footer(){
     return (
-        <footer className=" h-[10%] flex justify-center items-center gap-2 bg-gray-700">
+        <footer className=" h-20 flex justify-center items-center gap-2 bg-gray-700">
             <a className="block flex items-center gap-2" href="https://www.github.com/0-daedalus">
                 <Image
                 priority

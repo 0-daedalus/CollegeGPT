@@ -6,8 +6,8 @@ import Link from "next/link";
 export default function ProfileCard({ userData }) {
     return (
         <>
-            <div className="profileCard flex flex-col justify-center items-center w-2/6 h-4/5">
-                <div className="flex flex-col justify-center items-center shadow-lg px-12 pt-4 bg-zinc-50 w-full flex-1">
+            <div className="profileCard flex flex-col justify-center items-center w-2/6 min-h-max">
+                <div className="flex flex-col justify-center items-center shadow-lg px-12 py-8 gap-8 bg-zinc-50 w-full flex-1">
                     <div className="profilePic flex justify-start items-center w-full flex-1">
                         <Image
                             src="/images/profile.jpg"
