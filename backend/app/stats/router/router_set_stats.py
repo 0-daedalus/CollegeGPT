@@ -22,7 +22,7 @@ class SetStatsRequest(AppModel):
     # volunteering: Optional[str]
 
 
-@router.patch("/{user_id}", status_code=status.HTTP_200_OK)
+@router.patch("/user_stats", status_code=status.HTTP_200_OK)
 def set_stats(
     input: SetStatsRequest,
     svc: Service = Depends(get_service),

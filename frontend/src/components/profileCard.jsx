@@ -2,8 +2,35 @@ import React from "react";
 import Image from "next/image";
 import "@/app/globals.css"
 import Link from "next/link";
+import axios from "axios";
+import GenerateButton from "./gererateButton";
 
-export default function ProfileCard({ userData }) {
+
+async function getProfileData(){
+    const config = {
+        headers: {
+            "accept": "application/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE3ZTM0MTA2NjU3NTI5NDBjYzVkOTgiLCJleHAiOjE2OTA1NzQ0NDV9.Kzyf5t-CiCNLzd1Jl06ZA9kNmsEAd79Xja1FR4roVRU",
+        }
+    }
+    const res = await axios.get("http://localhost:8000/stats/users", config).catch((err) => console.log(err));
+    const data = await res.data;
+    const reres = await axios.get("http://localhost:8000/auth/users/me", config).catch((err) => console.log(err));
+    const email = await reres.data.email;
+    return {
+        email: email,
+        country: data.country,
+        major: data.majors,
+        sat_score: data.sat_score,
+        ielts_score: data.ielts_score,
+        cgpa: data.CGPA,
+        cgpa_scale: data.GPA_scale,
+    }
+
+}
+
+export default async function ProfileCard() {
+    const userData = await getProfileData();
     return (
         <>
             <div className="profileCard flex flex-col justify-center items-center w-2/6 min-h-max">
@@ -35,7 +62,7 @@ export default function ProfileCard({ userData }) {
                     </div>
                 </div>
                 <div className="buttons my-6">
-                    <button className="bg-green-500 rounded-md text-white h-fit text-lg p-4 mr-8">Generate List</button>
+                    <GenerateButton userData={userData} />
                     <button className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mr-8"><Link href="/pages/stats">Edit stats</Link></button>
                 </div>
             </div>

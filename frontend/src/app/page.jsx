@@ -9,7 +9,7 @@ export default async function Home(){
     let config = {
       headers: {
         "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE2ODY4OWIxNjNmZjg5NjJlNWFjYmIiLCJleHAiOjE2OTA0ODA2Mzh9.gr0p1KYGT8WezFB6ZJRsX0vlRYs1IXLUv-I2A8qOWgE"
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE3ZTM0MTA2NjU3NTI5NDBjYzVkOTgiLCJleHAiOjE2OTA1NzQ0NDV9.Kzyf5t-CiCNLzd1Jl06ZA9kNmsEAd79Xja1FR4roVRU"
       }
     }
     const universities = await axios.get("http://localhost:8000/stats/universities", config).catch((err) => console.log(err));
@@ -19,11 +19,10 @@ export default async function Home(){
     return (
         <Layout>
             <div className="uniList w-full h-full grid gap-16 p-12">
-                {universities.data.map((university) => (
-                    <CardWrapper  university={university} />
+                {universities.data.map((university, index) => (
+                    <CardWrapper  university={university} key={index} />
                 ))}
             </div>  
-            {/* <UniversityCard UniversityPhoto={url.props.UniversityPhoto}></UniversityCard> */}
         </Layout>
     )
 }

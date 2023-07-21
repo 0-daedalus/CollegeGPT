@@ -155,6 +155,8 @@ class StatsRepository:
                 "_id": ObjectId(user_id),
             }
         )
+        if universities is None:
+            return None
         return universities["universities"]
 
     def addImageToUni(self, user_id: str, Uniname: str, imageUrl: str):

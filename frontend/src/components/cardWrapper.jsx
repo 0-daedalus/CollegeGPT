@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import UniversityCard from "./universityCard";
+import Link from "next/link";
 
 async function getPhotoUrl(name){
     const API_KEY = process.env.GOOGLE_MAPS_KEY;
@@ -22,7 +23,7 @@ export default async function CardWrapper({university, children}){
         let config = {
             headers: {
                 "accept": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE2ODY4OWIxNjNmZjg5NjJlNWFjYmIiLCJleHAiOjE2OTA0ODY1MDJ9.CRiJMi51CKunSujc-KSfMGm_6FpUXMiriDim-0kByeA",
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE3ZTM0MTA2NjU3NTI5NDBjYzVkOTgiLCJleHAiOjE2OTA1NzQ0NDV9.Kzyf5t-CiCNLzd1Jl06ZA9kNmsEAd79Xja1FR4roVRU",
             }
         }
         let data = {
@@ -33,8 +34,10 @@ export default async function CardWrapper({university, children}){
     }
 
     return (
-        <div className="card w-full h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform">
-            <UniversityCard university={university} />
-        </div>
+        <Link href={`/pages/universities/${university.name}`}>
+            <div className="card w-full h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform">
+                <UniversityCard university={university} />
+            </div>
+        </Link>
     )
 }
