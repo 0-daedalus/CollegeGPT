@@ -13,7 +13,7 @@ export default function InputField({forWhat, text, inputText, name, placeholder,
             placeholder={placeholder}
             required={isRequired}
             onChange={(e) => onInputChange(e.target.value)}
-            className=" text-lg border-black border-2 rounded-md pl-1"
+            className=" text-lg border-gray-700 border-2 rounded-md pl-1"
             />
             <span hidden></span>
         </div>

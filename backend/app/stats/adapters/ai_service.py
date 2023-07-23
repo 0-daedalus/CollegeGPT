@@ -49,7 +49,8 @@ class AIService:
             + "."
             + "Please, provide a list of approximately 5 reach, 5 target and 5 safety universities "
             + "for me in the USA. Do not make up universities. Make sure to provide their actual names, "
-            + "types (reach, target or safety), descriptions and tips on applying to them. "
+            + "types (reach, target or safety), descriptions and tips on applying to them. Descriptions should "
+            + "consist of pproximately 5 sentences. Tips should consist of approximately 5 sentences. "
         )
         # print(prompt)
         return prompt

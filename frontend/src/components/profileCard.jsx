@@ -10,7 +10,7 @@ async function getProfileData(){
     const config = {
         headers: {
             "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE3ZTM0MTA2NjU3NTI5NDBjYzVkOTgiLCJleHAiOjE2OTA1NzQ0NDV9.Kzyf5t-CiCNLzd1Jl06ZA9kNmsEAd79Xja1FR4roVRU",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE2ODY4OWIxNjNmZjg5NjJlNWFjYmIiLCJleHAiOjE2OTA3NDk4MzZ9.azy7kPraC-zhqWk7LhHGSP9duC0Lei_b3U2Vz8-Rs9g",
         }
     }
     const res = await axios.get("http://localhost:8000/stats/users", config).catch((err) => console.log(err));
@@ -63,7 +63,7 @@ export default async function ProfileCard() {
                 </div>
                 <div className="buttons my-6">
                     <GenerateButton userData={userData} />
-                    <button className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mr-8"><Link href="/pages/stats">Edit stats</Link></button>
+                    <button className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mr-8 font-bold"><Link href="/pages/stats">Edit stats</Link></button>
                 </div>
             </div>
         </>
