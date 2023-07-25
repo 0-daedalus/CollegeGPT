@@ -18,6 +18,7 @@ export default function UniversityCard({university}){
                 width={400}
                 height={400}
                 className="h-4/5"
+                unoptimized={true}
             />
             <h5 className="card-title my-4">{university ? university.name : "University"}</h5>
             <p className="w-4/5">{university ? university.description : "Description"}</p>
