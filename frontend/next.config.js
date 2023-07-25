@@ -12,6 +12,11 @@ module.exports = {
           hostname: 'upload.wikimedia.org',
           port: '',
         },
+        {
+          protocol: 'https',
+          hostname: 'college-gpt-beta.vercel.app',
+          port: '',
+        }
       ],
     },
   }
