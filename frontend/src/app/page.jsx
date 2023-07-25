@@ -1,28 +1,41 @@
+'use client';
 import React from "react";
-import Image from "next/image";
-import Layout from "@/components/layout";
-import CardWrapper from "@/components/cardWrapper";
+import { useState, useEffect } from "react";
+import RegisterForm from "@/components/registerForm";
+import LoginForm from "@/components/loginForm";
 import "@/app/globals.css"
-import axios from "axios";
 
-export default async function Home(){
-    let config = {
-      headers: {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGE2ODY4OWIxNjNmZjg5NjJlNWFjYmIiLCJleHAiOjE2OTA3NDk4MzZ9.azy7kPraC-zhqWk7LhHGSP9duC0Lei_b3U2Vz8-Rs9g"
-      }
+export default function Home(){
+    const [register, setRegister] = useState(false);
+    const [login, setLogin] = useState(false);
+    const [token, setToken] = useState(null);
+    useEffect(() => {
+        setToken(localStorage.removeItem("token"));
+    }, []);
+    const displayRegister = () => {
+        setRegister(true);
     }
-    const universities = await axios.get("http://localhost:8000/stats/universities", config).catch((err) => console.log(err));
-    
-    //const url = await getPhotoUrl();
-    //console.log(url.props.UniversityPhoto);
+    const removeRegister = () => {
+        setRegister(false);
+    }
+    const displayLogin = () => {
+        setLogin(true);
+    }
+    const removeLogin = () => {
+        setLogin(false);
+    }
     return (
-        <Layout>
-            <div className="uniList w-full h-full grid gap-16 p-12">
-                {universities.data.map((university, index) => (
-                    <CardWrapper  university={university} key={index} />
-                ))}
-            </div>  
-        </Layout>
+        <>
+            {register ? <RegisterForm onRemove={removeRegister} /> : null}
+            {login ? <LoginForm onRemove={removeLogin} /> : null}
+            <div className="w-screen h-screen flex flex-col justify-center items-center gap-14">
+                <h1 className="text-6xl font-bold">Welcome to CollegeGPT!</h1>
+                <p className="text-2xl">Use the power of AI to choose a college!</p>
+                <div className="controls flex gap-8">
+                    <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-5 rounded" onClick={displayRegister}>Register</button>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-5 rounded" onClick={displayLogin}>Login</button>
+                </div>
+            </div>
+        </>
     )
 }
