@@ -14,7 +14,7 @@ export async function getProfileData(token){
         }
     }
     // const res = await axios.get("http://localhost:8000/stats/users", config);
-    const res = await axios.get("https://collegegpt-backend.onrender.com/stats/users/me", config);
+    const res = await axios.get("https://collegegpt-backend.onrender.com/stats/users/", config);
     const data = res.data;
     // const reres = await axios.get("http://localhost:8000/stats/users/me", config);
     const reres = await axios.get("https://collegegpt-backend.onrender.com/stats/users/me", config);
