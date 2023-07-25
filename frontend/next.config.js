@@ -4,18 +4,15 @@ module.exports = {
       remotePatterns: [
         {
           protocol: 'https',
+          hostname: '**',
+          port: '',
+          pathname: '**',
+        },
+        {
+          protocol: 'https',
           hostname: 'maps.googleapis.com',
           port: '',
-        },
-        {
-          protocol: 'https',
-          hostname: 'upload.wikimedia.org',
-          port: '',
-        },
-        {
-          protocol: 'https',
-          hostname: 'college-gpt-beta.vercel.app',
-          port: '',
+          pathname: '**',
         }
       ],
     },
