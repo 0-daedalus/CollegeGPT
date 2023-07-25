@@ -1,17 +1,47 @@
 'use client'
 import React from "react";
 import InputField from "./inputField";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
 import '../app/globals.css'
 
-export default function Form({handleSubmit}){
+export default function Form(){
     const [sat, setSat] = useState('');
     const [ielts, setIelts] = useState('');
     const [cgpaScale, setCgpaScale] = useState('');
     const [country, setCountry] = useState('');
     const [major, setMajor] = useState('');
     const [cgpa, setCgpa] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+    const [token, setToken] = useState(null);
+    const router = useRouter();
+    const fetchToken = async () => {
+        const token = localStorage.getItem("token");
+        return token;
+    }
+    useEffect(() => {
+        fetchToken().then((res) => {
+            setToken(res);
+        })
+    }, []);
+    const handleSubmit = () => {
+        if(submitted){
+            const stats = {
+                sat: sat,
+                ielts: ielts,
+                cgpaScale: cgpaScale,
+                country: country,
+                major: major,
+                cgpa: cgpa,
+            }
+            const res = updateStats(stats, token);
+            setTimeout(() => {
+                router.push("/pages/profile");
+            }, 1000);
+        }
+    }
     
     return (
         <div className="stats-form">
@@ -32,10 +62,41 @@ export default function Form({handleSubmit}){
                     </div>
                 </div>
                 <div className="form-submit my-10 pl-12">
-                    <button type="submit" className=" capitalize font-bold p-4 text-xl rounded-xl border-green-950 bg-green-600 text-white">Update Stats</button>
+                    <button type="submit" className=" capitalize font-bold p-4 text-xl rounded-xl border-green-950 bg-green-600 text-white" onClick={(e) => 
+                        {
+                            e.preventDefault();
+                            setSubmitted(true);
+                            handleSubmit();
+                        }
+                    }>Update Stats</button>
                     <span className=" block pl-[5px] my-4">Don't have an account? <Link href="/" className=" no-underline font-bold text-green-600">Create one!</Link> </span>
                 </div>
             </form>
         </div>
     )
+}
+
+export async function updateStats(stats, token){
+    let config = {
+        method: "patch",
+        url: "http://localhost:8000/stats/user_stats/",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    }
+    let payload = {
+        country: stats.country,
+        majors: stats.major,
+        sat_score: stats.sat,
+        ielts_score: stats.ielts,
+        CGPA: stats.cgpa,
+        GPA_scale: stats.cgpaScale,
+    }
+    config.data = payload;
+    axios(config).then((res) => {
+        return res;
+        
+    }).catch((err) => console.log(err));
+
 }
