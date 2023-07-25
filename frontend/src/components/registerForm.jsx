@@ -29,7 +29,7 @@ export default function RegisterForm({onRemove}){
             "email": email,
             "password": password
         }
-        axios.post("http://localhost:8000/auth/users", data, config).then((res) => {
+        axios.post("https://collegegpt-backend.onrender.com/auth/users", data, config).then((res) => {
             console.log(res);
             let loginConfig = {
                 headers: {
@@ -41,7 +41,7 @@ export default function RegisterForm({onRemove}){
                 "username": email,
                 "password": password
             }
-            axios.post("http://localhost:8000/auth/users/tokens", loginData, loginConfig).then((res) => {
+            axios.post("https://collegegpt-backend.onrender.com/auth/users/tokens", loginData, loginConfig).then((res) => {
                 console.log(res);
                 setIsProcessing(false);
                 setIsRegistered(true);

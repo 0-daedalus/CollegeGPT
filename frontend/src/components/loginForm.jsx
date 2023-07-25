@@ -24,7 +24,7 @@ export default function LoginForm({onRemove}){
             "username": email,
             "password": password
         }
-        axios.post("http://localhost:8000/auth/users/tokens", data, config).then((res) => {
+        axios.post("https://collegegpt-backend.onrender.com/auth/users/tokens", data, config).then((res) => {
             console.log(res);
             setIsProcessing(false);
             setLoggedIn(true);

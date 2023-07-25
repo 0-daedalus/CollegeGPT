@@ -27,11 +27,11 @@ export default function GenerateButton({userData, token}){
                 }
             }
             console.log(config.headers.Authorization)
-            axios.patch("http://localhost:8000/stats/user_stats", payload, config).then(() => {
+            axios.patch("https://collegegpt-backend.onrender.com/stats/user_stats", payload, config).then(() => {
                 const data = {
                     "overwrite": false,
                 }
-                axios.post("http://localhost:8000/stats/universities", data, config).then((result) => {
+                axios.post("https://collegegpt-backend.onrender.com/stats/universities", data, config).then((result) => {
                     setRes(result);
                     setLoad(false);
                     console.log(result);

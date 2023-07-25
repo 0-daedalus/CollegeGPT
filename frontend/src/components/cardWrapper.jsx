@@ -30,7 +30,7 @@ export async function getUniversities(token){
         "Authorization": `Bearer ${token}`,
         }
     }
-    const universities = await axios.get("http://localhost:8000/stats/universities", config).catch((err) => console.log(err));
+    const universities = await axios.get("https://collegegpt-backend.onrender.com/stats/universities", config).catch((err) => console.log(err));
     return universities;
 }
 
@@ -50,7 +50,7 @@ export function CardWrapper({university, token, service}){
                 university.imageUrl = url;
                 let config = {
                     method: 'patch',
-                    url: `http://localhost:8000/stats/universities/`,
+                    url: `https://collegegpt-backend.onrender.com/stats/universities/`,
                     headers: {
                         "accept": "application/json",
                         "Authorization": `Bearer ${token}`,

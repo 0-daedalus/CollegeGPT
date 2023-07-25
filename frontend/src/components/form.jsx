@@ -79,7 +79,8 @@ export default function Form(){
 export async function updateStats(stats, token){
     let config = {
         method: "patch",
-        url: "http://localhost:8000/stats/user_stats/",
+        //url: "http://localhost:8000/stats/user_stats/",
+        url: "https://collegegpt-backend.onrender.com/stats/user_stats/",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
