@@ -39,17 +39,17 @@ class StatsRepository:
                     # "volunteering": stats["volunteering"],
                 }
             )
-        if stats["country"]:
+        if stats["country"] is not None:
             self.set_country(user_id, stats["country"])
-        if stats["majors"]:
+        if stats["majors"] is not None:
             self.set_majors(user_id, stats["majors"])
-        if stats["sat_score"]:
+        if stats["sat_score"] is not None:
             self.set_sat(user_id, stats["sat_score"])
-        if stats["ielts_score"]:
+        if stats["ielts_score"] is not None:
             self.set_ielts(user_id, stats["ielts_score"])
-        if stats["GPA_scale"]:
+        if stats["GPA_scale"] is not None:
             self.set_gpa_scale(user_id, stats["GPA_scale"])
-        if stats["CGPA"]:
+        if stats["CGPA"] is not None:
             self.set_cgpa(user_id, stats["CGPA"])
         # if stats["fin_aid"]:
         #     self.set_fin_aid(user_id, stats["fin_aid"])

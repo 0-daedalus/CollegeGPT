@@ -36,6 +36,7 @@ export default function Form(){
                 major: major,
                 cgpa: cgpa,
             }
+            console.log(stats);
             const res = updateStats(stats, token);
             setTimeout(() => {
                 router.push("/pages/profile");
@@ -87,13 +88,14 @@ export async function updateStats(stats, token){
         },
     }
     let payload = {
-        country: stats.country,
-        majors: stats.major,
-        sat_score: stats.sat,
-        ielts_score: stats.ielts,
-        CGPA: stats.cgpa,
-        GPA_scale: stats.cgpaScale,
+        country: stats.country === '' ? null : stats.country,
+        majors: stats.major === '' ? null : stats.major,
+        sat_score: stats.sat === '' ? null : stats.sat,
+        ielts_score: stats.ielts === '' ? null : stats.ielts,
+        CGPA: stats.cgpa === '' ? null : stats.cgpa,
+        GPA_scale: stats.cgpaScale === '' ? null : stats.cgpaScale,
     }
+    console.log(payload);
     config.data = payload;
     axios(config).then((res) => {
         return res;
