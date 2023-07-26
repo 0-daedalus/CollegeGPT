@@ -167,3 +167,30 @@ class StatsRepository:
             {"_id": ObjectId(user_id), "universities.name": Uniname},
             {"$set": {"universities.$.imageUrl": imageUrl}},
         )
+
+    def setOldStats(self, user_id: str, stats: dict):
+        if self.get_user_by_id(user_id) is None:
+            print("User not found")
+            return
+        self.database["oldStats"].update_one(
+            {"_id": ObjectId(user_id)},
+            {
+                "$set": {
+                    "country": stats["country"],
+                    "majors": stats["majors"],
+                    "sat_score": stats["sat_score"],
+                    "ielts_score": stats["ielts_score"],
+                    "GPA_scale": stats["GPA_scale"],
+                    "CGPA": stats["CGPA"],
+                }
+            },
+            upsert=True,
+        )
+
+    def getOldStats(self, user_id: str) -> Optional[dict]:
+        stats = self.database["oldStats"].find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+        return stats

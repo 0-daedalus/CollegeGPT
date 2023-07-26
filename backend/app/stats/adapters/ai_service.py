@@ -49,8 +49,13 @@ class AIService:
             + "."
             + "Please, provide a list of approximately 5 reach, 5 target and 5 safety universities "
             + "for me in the USA. Do not make up universities. Make sure to provide their actual names, "
-            + "types (reach, target or safety), descriptions and tips on applying to them. Descriptions should "
-            + "consist of pproximately 5 sentences. Tips should consist of approximately 5 sentences. "
+            + "types (reach, target or safety), descriptions and tips on applying to them. Do not recommend universities as "
+            + "'Reach University 1, Reach University 2, Target University 1' etc. Descriptions should "
+            + "consist of pproximately 5 sentences. Tips should consist of approximately 5 sentences. Be strict in your judgements."
+            + "You should keep in mind the following:  Understand, that in applicant's country, GPA of 4.50/5.00 is considered slightly above average. "
+            + "An applicant is eligible to apply to Ivy league, Harvard, MIT and other top universities only if their GPA is close to the maximum, "
+            + "they have an exceptional SAT score of more than 1400 and IELTS score of more than 7.0. If an applicant is weaker than an average applicant to"
+            + " some reach university, do not recommend it, just skip it."
         )
         # print(prompt)
         return prompt
@@ -66,10 +71,8 @@ class AIService:
                     + "Objects with the following fields: 'name' which contains the name of the university, 'type' which contains the type of the university "
                     + "(reach target or safety), 'description' which should include  the reason you recommend this university to an applicant,"
                     + " and 'tips' which should include your tips on applying to this university. "
-                    + "You should keep in mind the following:  Understand, that in applicant's country, GPA of 4.00/5.00 is considered slightly above average. "
-                    + "An applicant is eligible to apply to Ivy league, Harvard, MIT etc. only if their GPA is close to 5.00 (above 4.90), "
-                    + "they have an exceptional SAT score and IELTS score of more than 7.0. If an applicant is weaker than an average applicant to"
-                    + " a Reach university, do not recommend it. Your answer should ONLY contain JSON.",
+                    + "Example of bad names: 'Reach University 1, Target University 1, Safety University 1' etc. "
+                    + " Your answer should ONLY contain JSON.",
                 },
                 {"role": "user", "content": prompt},
             ],
