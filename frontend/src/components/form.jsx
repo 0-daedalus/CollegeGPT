@@ -21,9 +21,32 @@ export default function Form(){
         const token = localStorage.getItem("token");
         return token;
     }
+    const fetchStats = async (token) => {
+        let config = {
+            method: "get",
+            url: "https://collegegpt-backend.onrender.com/stats/users",
+            headers: {
+                "accept": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+        }
+        const res = await axios(config);
+        return res;
+    }
     useEffect(() => {
         fetchToken().then((res) => {
             setToken(res);
+            console.log(res);
+            fetchStats(res).then((res1) => {
+                console.log(res1);
+                setSat(res1.data.sat_score);
+                setIelts(res1.data.ielts_score);
+                setCgpaScale(res1.data.GPA_scale);
+                setCountry(res1.data.country);
+                setMajor(res1.data.majors);
+                setCgpa(res1.data.CGPA);
+        }
+        ).catch((err) => console.log(err));
         })
     }, []);
     const handleSubmit = () => {
