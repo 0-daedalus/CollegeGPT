@@ -29,7 +29,9 @@ def create_uni_list(
     if stats == oldStats and not data.overwrite:
         return curr
     prompt = svc.ai_svc.generate_prompt(stats)
-    uni_list = svc.ai_svc.generate_response(prompt)
+    recommendations = svc.ai_svc.generate_response(prompt)
+    print(recommendations)
+    uni_list = svc.ai_svc.generate_json(recommendations)
     svc.repository.add_universities(jwt_data.user_id, uni_list)
     svc.repository.setOldStats(jwt_data.user_id, stats)
     # for chunk in uni_list:
