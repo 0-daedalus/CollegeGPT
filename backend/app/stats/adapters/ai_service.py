@@ -90,7 +90,7 @@ class AIService:
         reply = response.choices[0].message.content.strip()
         return reply
 
-    def generate_json(self, universityList: str):
+    def generate_unilist_json(self, universityList: str):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo-16k",
             messages=[
@@ -153,3 +153,26 @@ class AIService:
         )
         reply = response.choices[0].message.content.strip()
         return reply
+
+    def generate_roadmap_json(self, roadmap: str):
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-16k",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful college assistant. You will be given a text with a roadmap on applying to a university. "
+                    + " Your job is to convert this text into a JSON with the following fields: "
+                    + "'introduction' which contains the introduction to the roadmap, 'conclusion' which contains the conclusion, and "
+                    + "'steps' which is an array that contains all of the steps (strictly in order, but without the step number). "
+                    + "Your answer should ONLY contain JSON.",
+                },
+                {
+                    "role": "user",
+                    "content": "Convert the following text into JSON" + roadmap,
+                },
+            ],
+            temperature=0.9,
+        )
+        reply = response.choices[0].message.content.strip()
+        reply_json = json.loads(reply)
+        return reply_json

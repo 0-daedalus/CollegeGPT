@@ -22,5 +22,6 @@ def create_roadmap(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No stats found for this user.",
         )
-    prompt = svc.ai_svc.generate_roadmap(data.university_name, stats)
-    return {"roadmap": prompt}
+    roadmap = svc.ai_svc.generate_roadmap(data.university_name, stats)
+    roadmap_json = svc.ai_svc.generate_roadmap_json(roadmap)
+    return roadmap_json
