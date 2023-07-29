@@ -194,3 +194,16 @@ class StatsRepository:
             }
         )
         return stats
+
+    def get_university(self, user_id: str, university_name: str):
+        universities = self.database["universities"].find_one(
+            {
+                "_id": ObjectId(user_id),
+            }
+        )
+        if universities is None:
+            return None
+        for uni in universities["universities"]:
+            if uni["name"] == university_name:
+                return uni
+        return None

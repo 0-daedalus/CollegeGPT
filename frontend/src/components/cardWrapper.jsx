@@ -1,9 +1,9 @@
 'use client';
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLoadScript } from "@react-google-maps/api";
 import axios from "axios";
 import UniversityCard from "./universityCard";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 
@@ -38,6 +38,7 @@ export async function getUniversities(token){
 const libraries = ["places"];
 export function CardWrapper({university, token, service}){
     const [photoUrl, setPhotoUrl] = useState(null);
+    const router = useRouter();
     if(!university.imageUrl || university.imageUrl === ''){
         service.findPlaceFromQuery({
             query: university.name,
@@ -68,11 +69,13 @@ export function CardWrapper({university, token, service}){
     return (
         <>
         {university.imageUrl !== '' && university.imageUrl !== null ?
-            <Link href={`/pages/universities/${university.name}`}>
-                <div className="card w-full h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform">
-                    <UniversityCard university={university} />
-                </div>
-            </Link>
+            <div className="card w-full h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform"
+            onClick={() => {
+                router.push(`/pages/${university.name}`);
+            }}
+            >
+                <UniversityCard university={university} />
+            </div>
         : null}
         </>
     )
