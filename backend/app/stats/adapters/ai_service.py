@@ -114,3 +114,42 @@ class AIService:
         reply = response.choices[0].message.content.strip()
         reply_json = json.loads(reply)
         return reply_json
+
+    def generate_roadmap(self, university_name: str, stats: dict):
+        prompt = (
+            "I am a student who wants to study in the US. I am from "
+            + stats["country"]
+            + ". I am interested in "
+            + stats["majors"]
+            + " major"
+            + ". I have a GPA of "
+            + str(stats["CGPA"])
+            + " out of "
+            + str(stats["GPA_scale"])
+            + ". I have a SAT score of "
+            + str(stats["sat_score"])
+            + ". I have an IELTS score of "
+            + str(stats["ielts_score"])
+            + ". Please, provide a roadmap for an applicant with my stats "
+            + "on applying to "
+            + university_name
+            + ". Do not make up any information! Style your roadmap as a list of steps."
+        )
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo-16k",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a helpful college assistant. Your job is to "
+                    + "provide an INTERNATIONAL applicant with a roadmap on applying to"
+                    + " a university. Keep in mind that an applicant is in need of "
+                    + "financial aid. Do not hesitate to critique the applicant's stats"
+                    + " and give them advice on how to improve their application."
+                    + ". With that in mind, give your recommendations.",
+                },
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.9,
+        )
+        reply = response.choices[0].message.content.strip()
+        return reply
