@@ -68,7 +68,7 @@ class AIService:
                 {
                     "role": "system",
                     "content": "You are a helpful college assistant. Your job is to provide an INTERNATIONAL applicant with a list of 1-5 reach,"
-                    + " 3-5 target and 3-5 safety universities in the USA. WIth that in mind, give your recommendations."
+                    + " 3-5 target and 3-5 safety universities in the USA. With that in mind, give your recommendations."
                     + " Give each university's actual name and type (reach, target or safety)."
                     + " Then, provide a through description of each of the universities and its relevance to the applicant."
                     + " Include some interesting facts about the universities in their descriptions, if you can."
