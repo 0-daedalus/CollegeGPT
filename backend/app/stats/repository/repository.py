@@ -207,3 +207,23 @@ class StatsRepository:
             if uni["name"] == university_name:
                 return uni
         return None
+
+    def create_roadmap(self, user_id: str, university_name: str, roadmap: dict):
+        if self.get_user_by_id(user_id) is None:
+            print("User not found")
+            return
+        payload = {
+            "user_id": ObjectId(user_id),
+            "university_name": university_name,
+            "roadmap": roadmap,
+        }
+        self.database["roadmaps"].insert_one(payload)
+
+    def get_roadmap(self, user_id: str, university_name: str):
+        roadmap = self.database["roadmaps"].find_one(
+            {
+                "user_id": ObjectId(user_id),
+                "university_name": university_name,
+            }
+        )
+        return roadmap["roadmap"]

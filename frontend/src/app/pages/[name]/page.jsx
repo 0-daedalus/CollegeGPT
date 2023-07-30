@@ -72,6 +72,7 @@ export default function UniversityPage({params}) {
                             className="h-1/2 w-fit"
                             height={400}
                             width={400}
+                            unoptimized
                             alt={`${uni.name} photo`}
                             />
                             <h1 className="text-3xl capitalize font-bold">{uni.name}</h1>
@@ -84,7 +85,7 @@ export default function UniversityPage({params}) {
                             type="button"
                             className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mt-8"
                             onClick={() => setClicked(true)}
-                            >Generate Roadmap</button>
+                            >{clicked ? "Loading..." : "Generate Roadmap"}</button>
                         </>
                         ) : roadmap ? (
                             <>
