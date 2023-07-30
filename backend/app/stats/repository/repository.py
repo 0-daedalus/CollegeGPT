@@ -226,4 +226,6 @@ class StatsRepository:
                 "university_name": university_name,
             }
         )
+        if roadmap is None:
+            return None
         return roadmap["roadmap"]
