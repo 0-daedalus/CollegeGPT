@@ -17,15 +17,13 @@ def create_roadmap(
     svc: Service = Depends(get_service),
 ):
     stats = svc.repository.get_stats(jwt_data.user_id)
-    oldStats = svc.repository.getOldStats(jwt_data.user_id)
-    print(stats == oldStats)
     if stats is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="No stats found for this user.",
         )
     curr = svc.repository.get_roadmap(jwt_data.user_id, data.university_name)
-    if stats == oldStats and curr is not None:
+    if curr is not None:
         return curr
     roadmap = svc.ai_svc.generate_roadmap(data.university_name, stats)
     roadmap_json = svc.ai_svc.generate_roadmap_json(roadmap)
