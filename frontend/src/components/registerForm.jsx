@@ -5,6 +5,10 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import "@/app/globals.css"
 
+const isValidEmail = (email) => {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
+}
+
 export default function RegisterForm({onRemove}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,6 +18,10 @@ export default function RegisterForm({onRemove}){
     const router = useRouter();
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!isValidEmail(email)){
+            alert("Invalid email!");
+            return;
+        }
         setIsProcessing(true);
         if(password !== confirm){
             alert("Passwords do not match!");
@@ -69,20 +77,23 @@ export default function RegisterForm({onRemove}){
                         <div className="w-full h-full flex flex-col gap-6 justify-center">
                             <div className="flex flex-col">
                                 <label htmlFor="email">Email:</label>
-                                <input type="text" value={email} htmlFor="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
+                                <input type="email" value={email} htmlFor="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
                                 className=" text-lg border-gray-700 border-2 rounded-md pl-1"
+                                required
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <label htmlFor="password">Password:</label>
                                 <input type="password" value={password} htmlFor="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}
                                 className=" text-lg border-gray-700 border-2 rounded-md pl-1"
+                                required
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <label htmlFor="confirm">Confirm Password:</label>
                                 <input type="password" value={confirm} htmlFor="password" id="confirm" placeholder="Confirm Password" onChange={(e) => setConfirm(e.target.value)}
                                 className=" text-lg border-gray-700 border-2 rounded-md pl-1"
+                                required
                                 />
                             </div>
                             <button type="submit" className="bg-green-500 hover:bg-green-700 text-white text-xl font-bold py-2 px-4 rounded" onClick={handleSubmit}>Register</button>

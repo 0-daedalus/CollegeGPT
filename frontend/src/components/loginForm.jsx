@@ -48,14 +48,16 @@ export default function LoginForm({onRemove}){
                         <div className="w-full h-full flex flex-col gap-6 justify-center">
                             <div className="flex flex-col">
                                 <label htmlFor="email">Email:</label>
-                                <input type="text" value={email} htmlFor="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
+                                <input type="email" value={email} htmlFor="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
                                 className=" text-lg border-gray-700 border-2 rounded-md pl-1"
+                                required
                                 />
                             </div>
                             <div className="flex flex-col">
                                 <label htmlFor="password">Password:</label>
                                 <input type="password" value={password} htmlFor="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}
                                 className=" text-lg border-gray-700 border-2 rounded-md pl-1"
+                                required
                                 />
                             </div>
                             <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-2 px-4 rounded" onClick={handleSubmit}>Register</button>
