@@ -28,27 +28,33 @@ def set_stats(
     svc: Service = Depends(get_service),
     jwt_data: JWTData = Depends(parse_jwt_user_data),
 ):
-    if not isinstance(input.country, str):
+    if input.country is not None and not isinstance(input.country, str):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Country must be a string.",
         )
-    if not isinstance(input.majors, str):
+    if input.majors is not None and not isinstance(input.majors, str):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Major must be a string.",
         )
-    if input.sat_score < 800 or input.sat_score > 1600:
+    if input.sat_score is not None and (
+        input.sat_score < 800 or input.sat_score > 1600
+    ):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="SAT score must be between 800 and 1600.",
         )
-    if input.ielts_score < 0 or input.ielts_score > 9:
+    if input.ielts_score is not None and (
+        input.ielts_score < 0 or input.ielts_score > 9
+    ):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="IELTS score must be between 0 and 9.",
         )
-    if not isinstance(input.GPA_scale, float) or not isinstance(input.CGPA, float):
+    if (input.GPA_scale is not None and not isinstance(input.GPA_scale, float)) or (
+        input.CGPA is not None and not isinstance(input.CGPA, float)
+    ):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="GPA must be a float.",

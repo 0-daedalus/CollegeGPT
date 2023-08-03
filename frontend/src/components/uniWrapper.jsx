@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getUniversities, CardWrapper } from "./cardWrapper";
 import { useLoadScript } from "@react-google-maps/api";
+import Link from "next/link";
 
 const libraries = ["places"];
 export default function UniWrapper(){
@@ -34,7 +35,12 @@ export default function UniWrapper(){
                         <CardWrapper  university={university} token={token} service={service} key={index} />
                     ))}
                 </>
-            ) : null}
+            ) : (
+                <div className="h-full w-ful flex flex-col justify-center items-center gap-12">
+                    <h1 className="block text-4xl font-bold">Oops! You don't have a university list yet!</h1>
+                    <p className="block text-xl">You can generate it <Link href="/pages/profile" className="text-green-600 font-bold">here!</Link></p>
+                </div>
+            )}
         </>
     )
 }
