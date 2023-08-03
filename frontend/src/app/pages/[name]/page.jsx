@@ -9,7 +9,8 @@ import '@/app/globals.css'
 
 
 export default function UniversityPage({params}) {
-    const name = decodeURI(params.name);
+    const name = decodeURIComponent(params.name);
+    //console.log(name);
     const [token, setToken] = useState(null);
     const [uni, setUni] = useState(null);
     const [clicked, setClicked] = useState(false);

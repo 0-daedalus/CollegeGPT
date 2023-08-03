@@ -61,7 +61,10 @@ export default function Form(){
             }
             console.log(stats);
             updateStats(stats, token).then((res) => {
-                router.push("/pages/profile");
+                setTimeout(() => {
+                    router.push("/pages/profile");
+                }, 2000);
+
             }).catch((err) => console.log(err));
             
         //}
