@@ -24,6 +24,7 @@ body {
       rgb(255,255,255)
     )
     rgb(214,219,220);
+    overflow-x: hidden;
 }
 
 .uniList{
@@ -32,4 +33,8 @@ body {
 
 .card{
   width: 100%;
+}
+
+.github-logo:hover{
+  filter: brightness(0) saturate(100%) invert(93%) sepia(16%) saturate(74%) hue-rotate(177deg) brightness(90%) contrast(91%);
 }

@@ -17,7 +17,7 @@ export default function Layout({children}){
       <Header>
         
       </Header>
-      <main className='flex-1 flex justify-center items-center bg-white'>{children}</main>
+      <main className='flex-1 flex justify-center items-center bg-white py-12'>{children}</main>
       <Footer>
         
       </Footer>

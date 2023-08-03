@@ -26,7 +26,7 @@ export default function GenerateButton({userData, token}){
                     "Authorization": `Bearer ${token}`,
                 }
             }
-            console.log(config.headers.Authorization)
+            //console.log(config.headers.Authorization)
             axios.patch("https://collegegpt-backend.onrender.com/stats/user_stats", payload, config).then(() => {
                 const data = {
                     "overwrite": false,
@@ -34,7 +34,7 @@ export default function GenerateButton({userData, token}){
                 axios.post("https://collegegpt-backend.onrender.com/stats/universities", data, config).then((result) => {
                     setRes(result);
                     setLoad(false);
-                    console.log(result);
+                    //console.log(result);
                 }).catch((err) => console.log(err));
             }).catch((err) => console.log(err));
         }

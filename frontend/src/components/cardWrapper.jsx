@@ -47,7 +47,7 @@ export function CardWrapper({university, token, service}){
             if(status === google.maps.places.PlacesServiceStatus.OK){
                 // console.log(results);
                 const url = results[0].photos[0].getUrl()
-                console.log(url);
+                //console.log(url);
                 setPhotoUrl(url);
                 university.imageUrl = url;
                 let config = {
@@ -62,7 +62,7 @@ export function CardWrapper({university, token, service}){
                         "imageUrl": url,
                     }
                 }
-                axios(config).then((res) => console.log(res)).catch((err) => console.log(err));
+                axios(config).then().catch((err) => console.log(err));
             }
         });
     }   

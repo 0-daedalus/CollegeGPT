@@ -36,9 +36,9 @@ export default function Form(){
     useEffect(() => {
         fetchToken().then((res) => {
             setToken(res);
-            console.log(res);
+            //console.log(res);
             fetchStats(res).then((res1) => {
-                console.log(res1);
+                //console.log(res1);
                 setSat(res1.data.sat_score);
                 setIelts(res1.data.ielts_score);
                 setCgpaScale(res1.data.GPA_scale);
@@ -49,8 +49,8 @@ export default function Form(){
         ).catch((err) => console.log(err));
         })
     }, []);
-    const handleSubmit = () => {
-        if(submitted){
+    const handleSubmit = async () => {
+        //if(submitted){
             const stats = {
                 sat: sat,
                 ielts: ielts,
@@ -60,16 +60,17 @@ export default function Form(){
                 cgpa: cgpa,
             }
             console.log(stats);
-            const res = updateStats(stats, token);
-            setTimeout(() => {
+            updateStats(stats, token).then((res) => {
                 router.push("/pages/profile");
-            }, 1000);
-        }
+            }).catch((err) => console.log(err));
+            
+        //}
+        //else console.log("not submitted");
     }
     
     return (
         <div className="stats-form">
-            <form action="" method="post" onSubmit={handleSubmit}>
+            <form action="" method="post">
                 <div className="form-fields flex flex-col shadow-lg px-12 pt-8 bg-zinc-50">
                     <h2>Enter your stats:</h2>
                     <div className="form-inputs flex gap-16">
@@ -79,20 +80,22 @@ export default function Form(){
                             <InputField forWhat="cgpa-scale" text="CGPA Scale" inputText={cgpaScale} name="cgpa_scale" placeholder="5.00" isRequired={true} onInputChange={setCgpaScale} />
                         </div>
                         <div className="right-inputs flex flex-col gap-4 py-6 mb-8">
-                            <InputField forWhat="country" text="Country" inputText={country} name="country" placeholder="Kazakhstan" isRequired={true} onInputChange={setCountry} />
+                            <InputField forWhat="country" text="Country of application" inputText={country} name="country" placeholder="Kazakhstan" isRequired={true} onInputChange={setCountry} />
                             <InputField forWhat="major" text="Major" inputText={major} name="major" placeholder="CS" isRequired={true} onInputChange={setMajor} />
                             <InputField forWhat="cgpa" text="CGPA" inputText={cgpa} name="cgpa" placeholder="5.00" isRequired={true} onInputChange={setCgpa} />
                         </div>
                     </div>
                 </div>
                 <div className="form-submit my-10 pl-12">
-                    <button type="submit" className=" capitalize font-bold p-4 text-xl rounded-xl border-green-950 bg-green-600 text-white" onClick={(e) => 
+                    <button type="submit" className=" capitalize font-bold p-4 text-xl rounded-xl border-green-950 bg-green-600 text-white" 
+                    onClick={(e) => 
                         {
+                            //setSubmitted(true);
                             e.preventDefault();
-                            setSubmitted(true);
                             handleSubmit();
                         }
-                    }>Update Stats</button>
+                    }
+                    >Update Stats</button>
                     <span className=" block pl-[5px] my-4">Don't have an account? <Link href="/" className=" no-underline font-bold text-green-600">Create one!</Link> </span>
                 </div>
             </form>
@@ -118,7 +121,7 @@ export async function updateStats(stats, token){
         CGPA: stats.cgpa === '' ? null : stats.cgpa,
         GPA_scale: stats.cgpaScale === '' ? null : stats.cgpaScale,
     }
-    console.log(payload);
+    //console.log(payload);
     config.data = payload;
     axios(config).then((res) => {
         return res;

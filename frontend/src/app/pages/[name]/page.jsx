@@ -37,7 +37,7 @@ export default function UniversityPage({params}) {
         });
     }, []);
     useEffect(() => {
-        console.log(clicked);
+        //console.log(clicked);
         if(clicked){
             const config = {
                 headers: {
@@ -49,7 +49,7 @@ export default function UniversityPage({params}) {
                 university_name: name,
             }
             axios.post("https://collegegpt-backend.onrender.com/stats/roadmap", data, config).then((res) => {
-                console.log(res);
+                //console.log(res);
                 setRoadmap(res.data);
                 setClicked(false);
             }

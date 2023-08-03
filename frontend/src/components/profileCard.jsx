@@ -44,7 +44,7 @@ export function ProfileCard({userData, token}) {
                 />
                 <div className=" flex flex-col justify-center gap-4 items-start ml-8 flex-1 h-full">
                     <span>Email: {userData.email}</span>
-                    <span>Country: {userData.country}</span>
+                    <span>Country of application: {userData.country}</span>
                 </div>
             </div>
             <div className="profileEntry w-full flex-1 flex items-center">
