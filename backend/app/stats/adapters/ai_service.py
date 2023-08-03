@@ -22,7 +22,8 @@ class AIService:
         # )
         prompt = (
             "I am a student who wants to study in the US. I am from "
-            + stats["country"]
+            + "Kazakhstan"
+            # + stats["country"]
             + ". I am interested in "
             + stats["majors"]
             + " major"
@@ -47,8 +48,9 @@ class AIService:
             # + ". I have volunteered at "
             # + stats["volunteering"]
             + "."
-            + "Please, provide a list of 4 reach, 4 target and 4 safety universities "
-            + "for me in the USA. Do not make up universities. Make sure to provide their actual names, "
+            + "Please, provide a list of 10-12 universities for me in "
+            + str(stats["country"])
+            + ". Do not make up universities. Make sure to provide their actual names, "
             + "types (reach, target or safety), descriptions and tips on applying to them. Do not recommend universities as "
             + "'Reach University 1, Reach University 2, Target University 1' etc. Be strict in your judgements."
             + "You should keep in mind the following:  Understand, that in applicant's country, GPA of 4.50/5.00 is considered slightly above average. "
@@ -67,8 +69,8 @@ class AIService:
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful college assistant. Your job is to provide an INTERNATIONAL applicant with a list of 1-5 reach,"
-                    + " 3-5 target and 3-5 safety universities in the USA. With that in mind, give your recommendations."
+                    "content": "You are a helpful college assistant. Your job is to provide an INTERNATIONAL applicant with a list"
+                    + " of 10-12 universities in their country of preferrence. With that in mind, give your recommendations."
                     + " Give each university's actual name and type (reach, target or safety)."
                     + " Then, provide a through description of each of the universities and its relevance to the applicant."
                     + " Include some interesting facts about the universities in their descriptions, if you can."

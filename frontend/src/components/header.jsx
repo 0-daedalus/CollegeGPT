@@ -41,7 +41,7 @@ export default function Header(){
                     <ul className="flex w-1/2 justify-around text-white text-2xl"> 
                         <li><Link href="/">HOME</Link></li>
                         <li><Link href="/pages/profile">PROFILE</Link></li>
-                        <li><Link href="/" onClick={() => setClicked(true)}>LOG-OUT</Link></li>
+                        <li><Link href="/pages/universities" onClick={() => setClicked(true)}>LOG-OUT</Link></li>
                     </ul>
                 ) : (
                     <button type="button" className=" bg-green-500 rounded-md text-white h-fit text-lg p-4 mr-8" onClick={logIn}>Log-in</button>
