@@ -119,7 +119,7 @@ class AIService:
 
     def generate_roadmap(self, university_name: str, stats: dict):
         prompt = (
-            "I am a student who wants to study in the US. I am from "
+            "I am a student who wants to study in "
             + stats["country"]
             + ". I am interested in "
             + stats["majors"]
