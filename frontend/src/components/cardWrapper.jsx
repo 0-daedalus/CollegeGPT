@@ -68,15 +68,17 @@ export function CardWrapper({university, token, service}){
     }   
     return (
         <>
-        {university.imageUrl !== '' && university.imageUrl !== null ?
-            <div className="card w-full h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform"
-            onClick={() => {
-                router.push(`/pages/${university.name}`);
-            }}
-            >
-                <UniversityCard university={university} />
-            </div>
-        : null}
+        <div className="card w-full md:w-auto h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform">
+            {university.imageUrl !== '' && university.imageUrl !== null ?
+                <div className="card w-full h-full rounded-2xl border-gray-700 bg-zinc-50 border hover:cursor-pointer hover:scale-105 transition-transform"
+                onClick={() => {
+                    router.push(`/pages/${university.name}`);
+                }}
+                >
+                    <UniversityCard university={university} />
+                </div>
+            : null}
+        </div>
         </>
     )
 }

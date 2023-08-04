@@ -69,36 +69,61 @@ export default function RegisterForm({onRemove}){
     return (
         <>
             <div className="absolute top-0 left-0 h-screen w-screen backdrop-blur" onClick={onRemove}></div>
-            <form className={"absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] register"
-            + " flex flex-col gap-4 justify-center pt-12 pb-12  w-2/6 bg-white px-12 border-2 border-gray-500 rounded-md"}>
-                <h2 className="text-3xl font-bold pb-8">Registration:</h2>
-                {isRegistered ? <p className="text-green-500 text-3xl font-bold">Successfully registered!</p> : isProcessing ? <p className="text-blue-500 text-3xl font-bold">Processing...</p> : (
-                    <>
-                        <div className="w-full h-full flex flex-col gap-6 justify-center">
-                            <div className="flex flex-col">
-                                <label htmlFor="email">Email:</label>
-                                <input type="email" value={email} htmlFor="email" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}
-                                className=" text-lg border-gray-700 border-2 rounded-md pl-1"
-                                required
-                                />
-                            </div>
-                            <div className="flex flex-col">
-                                <label htmlFor="password">Password:</label>
-                                <input type="password" value={password} htmlFor="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}
-                                className=" text-lg border-gray-700 border-2 rounded-md pl-1"
-                                required
-                                />
-                            </div>
-                            <div className="flex flex-col">
-                                <label htmlFor="confirm">Confirm Password:</label>
-                                <input type="password" value={confirm} htmlFor="password" id="confirm" placeholder="Confirm Password" onChange={(e) => setConfirm(e.target.value)}
-                                className=" text-lg border-gray-700 border-2 rounded-md pl-1"
-                                required
-                                />
-                            </div>
-                            <button type="submit" className="bg-green-500 hover:bg-green-700 text-white text-xl font-bold py-2 px-4 rounded" onClick={handleSubmit}>Register</button>
-                        </div>
-                    </>
+            <form className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4/5 max-w-md bg-white p-8 border-2 border-gray-500 rounded-md">
+                <h2 className="text-2xl font-bold pb-4">Registration:</h2>
+                {isRegistered ? (
+                    <p className="text-green-500 text-xl font-bold">Successfully registered!</p>
+                ) : isProcessing ? (
+                    <p className="text-blue-500 text-xl font-bold">Processing...</p>
+                ) : (
+                <>
+                    <div className="flex flex-col gap-1 mb-3">
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        htmlFor="email"
+                        id="email"
+                        placeholder="Email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="text-base border-gray-700 border-2 rounded-md pl-2 py-1"
+                        required
+                    />
+                    </div>
+                    <div className="flex flex-col gap-1 mb-3">
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        htmlFor="password"
+                        id="password"
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="text-base border-gray-700 border-2 rounded-md pl-2 py-1"
+                        required
+                    />
+                    </div>
+                    <div className="flex flex-col gap-1 mb-3">
+                    <label htmlFor="confirm">Confirm Password:</label>
+                    <input
+                        type="password"
+                        value={confirm}
+                        htmlFor="password"
+                        id="confirm"
+                        placeholder="Confirm Password"
+                        onChange={(e) => setConfirm(e.target.value)}
+                        className="text-base border-gray-700 border-2 rounded-md pl-2 py-1"
+                        required
+                    />
+                    </div>
+                    <button
+                    type="submit"
+                    className="bg-green-500 hover:bg-green-700 text-white text-lg font-bold py-2 px-4 rounded"
+                    onClick={handleSubmit}
+                    >
+                    Register
+                    </button>
+                </>
                 )}
             </form>
         </>

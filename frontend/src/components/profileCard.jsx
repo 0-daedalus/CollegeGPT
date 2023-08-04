@@ -32,37 +32,43 @@ export async function getProfileData(token){
 }
 
 export function ProfileCard({userData, token}) {
-    return userData ? <div className="profileCard flex flex-col justify-center items-center w-2/6 min-h-max">
-        <div className="flex flex-col justify-center items-center shadow-lg px-12 py-8 gap-8 bg-zinc-50 w-full flex-1">
-            <div className="profilePic flex justify-start items-center w-full flex-1">
+    return userData ? (
+        <div className="profileCard flex flex-col justify-center items-center w-full md:w-2/3 lg:w-1/3 mx-auto">
+          <div className="flex flex-col justify-center items-start shadow-lg px-6 py-6 md:px-12 md:py-8 gap-6 bg-zinc-50 w-full flex-1">
+            <div className="flex flex-row items-center justify-between w-full">
+              <div className="profilePic flex justify-center items-center w-32 h-32 md:w-40 md:h-40">
                 <Image
-                    src="/images/profile.jpg"
-                    className="rounded-full h-3/4 w-fit"
-                    height={100}
-                    width={100}
-                    alt="Profile Picture"
+                  src="/images/profile.jpg"
+                  className="rounded-full h-full w-full"
+                  height={160}
+                  width={160}
+                  alt="Profile Picture"
                 />
-                <div className=" flex flex-col justify-center gap-4 items-start ml-8 flex-1 h-full">
-                    <span>Email: {userData.email}</span>
-                    <span>Country of application: {userData.country}</span>
-                </div>
+              </div>
+              <div className="profileInfo flex flex-col gap-2 text-left ml-8">
+                <span><strong>Email:</strong> {userData.email}</span>
+                <span><strong>Preferred major:</strong> {userData.major}</span>
+              </div>
             </div>
-            <div className="profileEntry w-full flex-1 flex items-center">
-                <p>Preferred major: {userData.major}</p>
+            <div className="profileInfo flex flex-col gap-2 text-left">
+              <span><strong>Country of application:</strong> {userData.country}</span>
+              <span><strong>SAT Score:</strong> {userData.sat_score}</span>
+              <span><strong>IELTS score:</strong> {userData.ielts_score}</span>
+              <span><strong>GPA:</strong> {userData.cgpa}/{userData.cgpa_scale}</span>
             </div>
-            <div className="profileEntry w-full flex-1 flex items-center">
-                <p>SAT Score: {userData.sat_score}</p>
-            </div>
-            <div className="profileEntry w-full flex-1 flex items-center">
-                <p>IELTS score: {userData.ielts_score}</p>
-            </div>
-            <div className="profileEntry w-full flex-1 flex items-center">
-                <p>GPA: {userData.cgpa + "/" + userData.cgpa_scale}</p>
-            </div>
-        </div>
-        <div className="buttons my-6">
+          </div>
+          <div className="buttons my-4 md:my-6">
             <GenerateButton userData={userData} token={token} />
-            <button className=" bg-orange-500 rounded-md text-white h-fit text-lg p-4 mr-8 font-bold"><Link href="/pages/stats">Edit stats</Link></button>
+            <button className="bg-orange-500 rounded-md text-white text-base px-4 py-2 md:text-lg md:p-4 font-bold">
+              <Link href="/pages/stats">Edit stats</Link>
+            </button>
+          </div>
         </div>
-    </div> : <></>
+      ) : (
+        <></>
+      );
+      
+      
+      
+      
 }

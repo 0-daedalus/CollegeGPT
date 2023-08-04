@@ -38,7 +38,7 @@ export default function Header(){
                 alt="CollegeGPT logo"
                 />
                 {isLoggedIn ? (
-                    <ul className="flex w-1/2 justify-around text-white text-2xl"> 
+                    <ul className="flex items-center md:gap-12 gap-4 text-white text-xl md:pr-12 pr-4"> 
                         <li><Link href="/pages/universities">HOME</Link></li>
                         <li><Link href="/pages/profile">PROFILE</Link></li>
                         <li><Link href="/" onClick={() => setClicked(true)}>LOG-OUT</Link></li>

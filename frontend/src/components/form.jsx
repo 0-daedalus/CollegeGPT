@@ -73,37 +73,95 @@ export default function Form(){
     
     return (
         <div className="stats-form">
-            <form action="" method="post">
-                <div className="form-fields flex flex-col shadow-lg px-12 pt-8 bg-zinc-50">
-                    <h2>Enter your stats:</h2>
-                    <div className="form-inputs flex gap-16">
-                        <div className="left-inputs flex flex-col gap-4 py-6 mb-8">
-                            <InputField forWhat="sat" text="SAT Score" inputText={sat} name="sat_score" placeholder="1600" isRequired={true} onInputChange={setSat} />
-                            <InputField forWhat="ielts" text="IELTS Score" inputText={ielts} name="ielts_score" placeholder="9.0" isRequired={true} onInputChange={setIelts} />
-                            <InputField forWhat="cgpa-scale" text="CGPA Scale" inputText={cgpaScale} name="cgpa_scale" placeholder="5.00" isRequired={true} onInputChange={setCgpaScale} />
-                        </div>
-                        <div className="right-inputs flex flex-col gap-4 py-6 mb-8">
-                            <InputField forWhat="country" text="Country of application" inputText={country} name="country" placeholder="Kazakhstan" isRequired={true} onInputChange={setCountry} />
-                            <InputField forWhat="major" text="Major" inputText={major} name="major" placeholder="CS" isRequired={true} onInputChange={setMajor} />
-                            <InputField forWhat="cgpa" text="CGPA" inputText={cgpa} name="cgpa" placeholder="5.00" isRequired={true} onInputChange={setCgpa} />
-                        </div>
-                    </div>
+          <form action="" method="post">
+            <div className="form-fields shadow-lg px-6 md:px-12 pt-6 md:pt-8 pb-4 md:pb-6 bg-zinc-50">
+              <h2 className="text-xl md:text-2xl mb-2">Enter your stats:</h2>
+              <div className="form-inputs md:flex md:gap-16">
+                <div className="left-inputs flex flex-col gap-3 md:py-4 mb-4 md:mb-8">
+                  <InputField
+                    forWhat="sat"
+                    text="SAT Score"
+                    inputText={sat}
+                    name="sat_score"
+                    placeholder="1600"
+                    isRequired={true}
+                    onInputChange={setSat}
+                  />
+                  <InputField
+                    forWhat="ielts"
+                    text="IELTS Score"
+                    inputText={ielts}
+                    name="ielts_score"
+                    placeholder="9.0"
+                    isRequired={true}
+                    onInputChange={setIelts}
+                  />
+                  <InputField
+                    forWhat="cgpa-scale"
+                    text="CGPA Scale"
+                    inputText={cgpaScale}
+                    name="cgpa_scale"
+                    placeholder="5.00"
+                    isRequired={true}
+                    onInputChange={setCgpaScale}
+                  />
                 </div>
-                <div className="form-submit my-10 pl-12">
-                    <button type="submit" className=" capitalize font-bold p-4 text-xl rounded-xl border-green-950 bg-green-600 text-white" 
-                    onClick={(e) => 
-                        {
-                            //setSubmitted(true);
-                            e.preventDefault();
-                            handleSubmit();
-                        }
-                    }
-                    >Update Stats</button>
-                    <span className=" block pl-[5px] my-4">Don't have an account? <Link href="/" className=" no-underline font-bold text-green-600">Create one!</Link> </span>
+                <div className="right-inputs flex flex-col gap-3 md:py-4 mb-4 md:mb-8">
+                  <InputField
+                    forWhat="country"
+                    text="Country of application"
+                    inputText={country}
+                    name="country"
+                    placeholder="Kazakhstan"
+                    isRequired={true}
+                    onInputChange={setCountry}
+                  />
+                  <InputField
+                    forWhat="major"
+                    text="Major"
+                    inputText={major}
+                    name="major"
+                    placeholder="CS"
+                    isRequired={true}
+                    onInputChange={setMajor}
+                  />
+                  <InputField
+                    forWhat="cgpa"
+                    text="CGPA"
+                    inputText={cgpa}
+                    name="cgpa"
+                    placeholder="5.00"
+                    isRequired={true}
+                    onInputChange={setCgpa}
+                  />
                 </div>
-            </form>
+              </div>
+            </div>
+            <div className="form-submit mt-4 md:mt-6 pl-6 md:pl-12">
+              <button
+                type="submit"
+                className="capitalize font-bold py-2 md:py-4 px-6 md:px-8 text-base md:text-lg rounded-xl border-green-950 bg-green-600 text-white"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
+              >
+                Update Stats
+              </button>
+              <span className="block pl-[5px] mt-3 md:my-4">
+                Don't have an account?{" "}
+                <Link
+                  href="/"
+                  className="no-underline font-bold text-green-600"
+                >
+                  Create one!
+                </Link>{" "}
+              </span>
+            </div>
+          </form>
         </div>
-    )
+      );
+      
 }
 
 export async function updateStats(stats, token){

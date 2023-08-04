@@ -29,18 +29,20 @@ export default function UniWrapper(){
     const service = new google.maps.places.PlacesService(document.createElement('div'));
     return (
         <>
-            {universities ? (
-                <>
-                    {universities.map((university, index) => (
-                        <CardWrapper  university={university} token={token} service={service} key={index} />
-                    ))}
-                </>
-            ) : (
-                <div className="h-full w-ful flex flex-col justify-center items-center gap-12">
-                    <h1 className="block text-4xl font-bold">Oops! You don't have a university list yet!</h1>
-                    <p className="block text-xl">You can generate it <Link href="/pages/profile" className="text-green-600 font-bold">here!</Link></p>
-                </div>
-            )}
+            <div className="grid gap-6 md:gap-16 md:grid-cols-2 lg:grid-cols-3">
+                {universities ? (
+                    <>
+                        {universities.map((university, index) => (
+                            <CardWrapper  university={university} token={token} service={service} key={index} />
+                        ))}
+                    </>
+                ) : (
+                    <div className="h-full w-ful flex flex-col justify-center items-center gap-12">
+                        <h1 className="block text-4xl font-bold">Oops! You don't have a university list yet!</h1>
+                        <p className="block text-xl">You can generate it <Link href="/pages/profile" className="text-green-600 font-bold">here!</Link></p>
+                    </div>
+                )}
+            </div>
         </>
     )
 }
